@@ -5,12 +5,12 @@ require_once('lib/View.php');
 class UsersController
 {
     private $model = null;
-    
+
     public function __construct()
     {
         $mysql = MySQL::getInstance(array('localhost', 'root', '', 'mvc'));
     	$this->model = new Model($mysql,'users');
-    	
+
     	$out = new View('header', array('title' => 'Testtitle', 'heading' => 'Userseite'));
     	$out->display();
     }
@@ -27,7 +27,7 @@ class UsersController
     	$view = new View('user_form');
 		$view->display();
     }
-    
+
     public function save($id)
     {
     	if ($_POST['send'])
@@ -51,7 +51,7 @@ class UsersController
     {
        $this->model->delete((int)$id);
     }
-    
+
     public function __destruct(){
     	$out = new View('footer');
     	$out->display();

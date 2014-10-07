@@ -1,6 +1,10 @@
-<form class="dhform" action="/users/save" method="post">
-	<label>Vorname: <input type="text" name="fname" /></label>
-	<label>Nachname: <input type="text" name="lname" /></label>
-	<label>Mail: <input type="text" name="email" /></label>
-	<label><input type="submit" name="send" value="User erstellen" /></label>
-</form>
+<?php
+
+$form = new Form('/users/save');
+
+echo $form->text()->label('Vorname')->name('fname');
+echo $form->text()->label('Nachname')->name('lname');
+echo $form->text()->label('Mail')->name('email');
+echo $form->submit()->label('User erstellen')->name('send');
+
+$form->end();
