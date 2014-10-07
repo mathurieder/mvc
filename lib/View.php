@@ -5,11 +5,11 @@ class View
     private $viewfile 	= null;
     private $properties = array();
 
-    public function __construct($viewfile = '', $properties = array())
+    public function __construct($viewfile, $properties = array())
     {
     	$this->properties = $properties;
 
-    	$viewfile = './view/' . $viewfile . '.php';
+    	$viewfile = "./view/$viewfile.php";
     	if (file_exists($viewfile)) {
 	       $this->viewfile = $viewfile;
 	    }
