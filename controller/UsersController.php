@@ -5,14 +5,14 @@ require_once('lib/View.php');
 class UsersController
 {
     private $model = null;
-    
+
     public function __construct()
     {
         $mysql = MySQL::getInstance(array('localhost', 'root', '', 'mvc'));
-    	$this->model = new Model($mysql,'users');
-    	
-    	$out = new View('header', array('title' => 'Testtitle', 'heading' => 'Userseite'));
-    	$out->display();
+    	$this->model = new Model($mysql, 'users');
+
+    	$view = new View('header', array('title' => 'Testtitle', 'heading' => 'Userseite'));
+    	$view->display();
     }
 
     public function index()
@@ -27,21 +27,18 @@ class UsersController
     	$view = new View('user_form');
 		$view->display();
     }
-    
+
     public function save($id)
     {
-    	if ($_POST['send'])
-    	{
+    	if ($_POST['send']) {
     		$fname = $_POST['fname'];
     		$lname = $_POST['lname'];
     		$email = $_POST['email'];
 
-    		if($id !== null)
-    		{
-    			$this->model->update(array('fname' => $fname, 'lname' => $lname, 'email' => $email), (int)$id);
-    		}
-    		else
-    		{
+    		if ($id !== null) {
+    			$this->model->update(array('fname' => $fname, 'lname' => $lname, 'email' => $email), (int) $id);
+
+    		} else {
     			$this->model->insert(array('fname' => $fname, 'lname' => $lname, 'email' => $email));
     		}
     	}
@@ -51,9 +48,9 @@ class UsersController
     {
        $this->model->delete((int)$id);
     }
-    
+
     public function __destruct(){
-    	$out = new View('footer');
-    	$out->display();
+    	$view = new View('footer');
+    	$view->display();
     }
 }

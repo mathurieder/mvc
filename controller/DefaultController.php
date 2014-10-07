@@ -2,8 +2,8 @@
 
 class DefaultController
 {
-    public function index()
-    {
-        echo 'Hallo Welt';
-    }
+	public function index()
+	{
+		echo 'Hallo Welt';
+	}
 }
