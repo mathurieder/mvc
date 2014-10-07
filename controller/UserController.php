@@ -22,7 +22,12 @@ class UserController
 
 	public function create($id = null)
 	{
-		$view = new View('user_create');
+		$data = array('user' => null);
+		if ($id !== null) {
+			$data['user'] = $this->model->find($id);
+		}
+
+		$view = new View('user_create', $data);
 		$view->display();
 	}
 
