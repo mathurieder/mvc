@@ -12,10 +12,17 @@ class Model
 		$this->table = $table;
     }
 
+    public function find($id)
+    {
+        $this->db->query("SELECT * FROM {$this->table} WHERE id=$id");
+
+        return $this->db->fetch();
+    }
+
     public function fetchAll()
     {
 		$rows = array();
-		$this->db->query('SELECT * FROM ' . $this->table);
+        $this->db->query("SELECT * FROM {$this->table}");
 		while ($row = $this->db->fetch()) {
 			$rows[] = $row;
 		}
