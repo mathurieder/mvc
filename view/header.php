@@ -35,7 +35,8 @@
           <ul class="nav navbar-nav navbar-right">
             <li class="divider">&nbsp;</li>
             <li><a href="/">Home</a></li>
-            <li class="active"><a href="/User/Create">Create</a></li>
+            <li><a href="/user">Benutzer</a></li>
+            <li><a href="/user/create">Benutzer erstellen</a></li>
           </ul>
         </div>
       </div>

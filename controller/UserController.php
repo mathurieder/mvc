@@ -1,6 +1,4 @@
 <?php
-require_once('lib/Model.php');
-require_once('lib/View.php');
 
 class UserController
 {
@@ -11,20 +9,20 @@ class UserController
 		$mysql = MySQL::getInstance(array('localhost', 'root', '', 'mvc'));
 		$this->model = new Model($mysql, 'users');
 
-		$view = new View('header', array('title' => 'Testtitle', 'heading' => 'Userseite'));
+		$view = new View('header', array('title' => 'Benutzer', 'heading' => 'Benutzer'));
 		$view->display();
 	}
 
 	public function index()
 	{
-		$view = new View('user_list');
+		$view = new View('user_index');
 		$view->users = $this->model->fetchAll();
 		$view->display();
 	}
 
 	public function create($id = null)
 	{
-		$view = new View('user_form');
+		$view = new View('user_create');
 		$view->display();
 	}
 
@@ -41,6 +39,9 @@ class UserController
 			} else {
 				$this->model->insert(array('fname' => $fname, 'lname' => $lname, 'email' => $email));
 			}
+
+			$view = new View('user_save_success');
+			$view->display();
 		}
 	}
 
