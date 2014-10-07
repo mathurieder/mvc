@@ -1,23 +1,57 @@
 <?php
-require_once('lib/View.php');
 
-class UserController{
-	public function __construct(){
-		$out = new View('header', array('title' => 'Seitentitel', 'heading' => 'Userseite'));
-		$out->display();
-	}
-	
-	public function index(){
-		$this->create();
-	}
-	
-	public function create(){
-		$view = new View('user_form');
+class UserController
+{
+	private $model = null;
+
+	public function __construct()
+	{
+		$mysql = MySQL::getInstance(array('localhost', 'root', '', 'mvc'));
+		$this->model = new Model($mysql, 'users');
+
+		$view = new View('header', array('title' => 'Benutzer', 'heading' => 'Benutzer'));
 		$view->display();
 	}
-	
+
+	public function index()
+	{
+		$view = new View('user_index');
+		$view->users = $this->model->fetchAll();
+		$view->display();
+	}
+
+	public function create($id = null)
+	{
+		$view = new View('user_create');
+		$view->display();
+	}
+
+	public function save($id = null)
+	{
+		if ($_POST['send']) {
+			$fname = $_POST['fname'];
+			$lname = $_POST['lname'];
+			$email = $_POST['email'];
+
+			if ($id !== null) {
+				$this->model->update(array('fname' => $fname, 'lname' => $lname, 'email' => $email), (int) $id);
+
+			} else {
+				$this->model->insert(array('fname' => $fname, 'lname' => $lname, 'email' => $email));
+			}
+
+			$view = new View('user_save_success');
+			$view->display();
+		}
+	}
+
+	public function delete($id)
+	{
+		$this->model->delete((int) $id);
+	}
+
 	public function __destruct(){
-    	$out = new View('footer');
-    	$out->display();
-    }
+		$view = new View('footer');
+		$view->display();
+	}
 }

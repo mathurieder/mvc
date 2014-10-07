@@ -5,11 +5,13 @@ class Form
 
     public function __construct($action = '#', $method = 'POST')
     {
-        echo "<form class=\"dhform\" action=\"$action\" method=\"$method\">";
+        echo "<form class=\"form-horizontal\" action=\"$action\" method=\"$method\">";
+        echo '  <div class="component" data-html="true">';
     }
 
     public function end()
     {
+        echo '  </div>';
         echo '</form>';
     }
 
