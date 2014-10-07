@@ -1,28 +1,6 @@
-<form class="form-horizontal" action="/users/save" method="post">
-	<div class="component" data-html="true">
-		<div class="form-group">
-		  <label class="col-md-2 control-label" for="textinput">Vorname</label>  
-		  <div class="col-md-4">
-		  	<input id="fname" name="fname" type="text" class="form-control input-md">
-		  </div>
-		</div>
-		<div class="form-group">
-		  <label class="col-md-2 control-label" for="textinput">Nachname</label>  
-		  <div class="col-md-4">
-		  	<input id="lname" name="lname" type="text" class="form-control input-md">
-		  </div>
-		</div>
-		<div class="form-group">
-		  <label class="col-md-2 control-label" for="textinput">Mail</label>  
-		  <div class="col-md-4">
-		  	<input id="email" name="email" type="text" class="form-control input-md">
-		  </div>
-		</div>
-		<div class="form-group">
-	      <label class="col-md-2 control-label" for="textinput">&nbsp;</label>
-		  <div class="col-md-4">
-		    <input id="send" name="send" type="submit" class="btn btn-primary">
-		  </div>
-		</div>
-	</div>
+<form class="dhform" action="/users/save" method="post">
+	<label>Vorname: <input type="text" name="fname" /></label>
+	<label>Nachname: <input type="text" name="lname" /></label>
+	<label>Mail: <input type="text" name="email" /></label>
+	<label><input type="submit" name="send" value="User erstellen" /></label>
 </form>

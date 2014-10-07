@@ -35,6 +35,6 @@ class View
     public function display()
     {
         extract($this->properties);
-        require_once($this->viewfile);
+        include_once($this->viewfile);
     }
 }
