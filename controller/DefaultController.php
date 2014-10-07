@@ -1,6 +1,9 @@
 <?php
-class DefaultController{
-	public function index(){
+
+class DefaultController
+{
+	public function index()
+	{
 		echo "Hallo Welt";
 	}
 }
