@@ -9,6 +9,6 @@ class UserController
 
 	public function create()
 	{
-		echo "User erstellen";
+		echo 'User erstellen';
 	}
 }
