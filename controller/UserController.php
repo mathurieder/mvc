@@ -1,11 +1,10 @@
 <?php
-require_once('lib/View.php');
 
 class UserController
 {
 	public function __construct()
 	{
-		$view = new View('header', array('title' => 'Seitentitel', 'heading' => 'Userseite'));
+		$view = new View('header', array('title' => 'Benutzer', 'heading' => 'Benutzer'));
 		$view->display();
 	}
 
