@@ -10,6 +10,8 @@
         Options Indexes FollowSymLinks
         Options +Includes
         AllowOverride All
+        Order allow,deny
+        Require all granted
         Allow from All
         DirectoryIndex index.php
     </Directory>
