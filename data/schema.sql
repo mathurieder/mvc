@@ -1,8 +1,12 @@
-﻿DROP TABLE IF EXISTS `users`;
-CREATE TABLE  `users` (
-  `id` INT(4) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `fname` VARCHAR(45) DEFAULT NULL,
-  `lname` VARCHAR(45) DEFAULT NULL,
-  `email` VARCHAR(45) DEFAULT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+﻿DROP TABLE IF EXISTS user;
+CREATE TABLE  user (
+  id        INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  firstName VARCHAR(64)  NOT NULL,
+  lastName  VARCHAR(64)  NOT NULL,
+  email     VARCHAR(128) NOT NULL,
+  password  VARCHAR(40)  NOT NULL,
+  PRIMARY KEY  (id)
+);
+
+INSERT INTO user (firstName, lastName, email, password) VALUES ('Ramon',  'Binz',  'ramon.binz@bbcag.ch',   sha1('ramon'));
+INSERT INTO user (firstName, lastName, email, password) VALUES ('Samuel', 'Wicky', 'samuel.wicky@bbcag.ch', sha1('samuel'));

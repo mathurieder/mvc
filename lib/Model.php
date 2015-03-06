@@ -1,74 +1,59 @@
 <?php
-require_once('lib/MySQL.php');
+require_once('ConnectionHandler.php');
 
 class Model
 {
-    private $db = null;
-    private $table = null;
+    protected $tableName = null;
 
-    public function  __construct(MySQL $db, $table)
+    public function readById($id)
     {
-        $this->db = $db;
-		$this->table = $table;
-    }
+        $query = "SELECT * FROM $this->tableName WHERE id=?";
 
-    public function find($id)
-    {
-        $this->db->query("SELECT * FROM {$this->table} WHERE id=$id");
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('i', $id);
+        $statement->execute();
 
-        return $this->db->fetch();
-    }
-
-    public function fetchAll()
-    {
-		$rows = array();
-        $this->db->query("SELECT * FROM {$this->table}");
-		while ($row = $this->db->fetch()) {
-			$rows[] = $row;
-		}
-
-		return $rows;
-    }
-
-    public function insert(array $data)
-    {
-    	if (!empty($data)) {
-    		$data = $this->quoteStrings($data);
-
-    		$fields = implode(',', array_keys($data));
-		    $values = implode(',', array_values($data));
-		    $this->db->query('INSERT INTO ' . $this->table . ' (' . $fields . ')' . ' VALUES (' . $values . ')');
-    	}
-    }
-
-    public function update(array $data, $id){
-    	if (!empty($data)) {
-    		$data = $this->quoteStrings($data);
-
-    		$set = '';
-		    foreach ($data as $field => $value) {
-		    	$set .= $field .'=' . $value . ',';
-			}
-			$set = substr($set, 0, -1);
-			$this->db->query('UPDATE ' . $this->table . ' SET ' . $set . ' WHERE id=' . (int) $id);
-    	}
-    }
-
-    public function delete($id = null)
-    {
-        if ($id !== null) {
-            $this->db->query('DELETE FROM ' . $this->table . ' WHERE id=' . (int) $id);
+        $result = $statement->get_result();
+        if (!$result) {
+            throw new Exception($result->error);
         }
+
+        $row = $result->fetch_object();
+
+        $result->close();
+
+        return $row;
     }
 
-    private function quoteStrings(array $data){
-    	foreach ($data as $field => $value) {
-    		$value = mysql_escape_string($value);
-    		if (!is_numeric($value)) {
-    			$data[$field] = "'$value'";
-    		}
-    	}
+    public function readAll($max = 100)
+    {
+        $query = "SELECT * FROM $this->tableName LIMIT 0, $max";
 
-    	return $data;
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->execute();
+
+        $result = $statement->get_result();
+        if (!$result) {
+            throw new Exception($statement->error);
+        }
+
+        $rows = array();
+        while ($row = $result->fetch_object()) {
+            $rows[] = $row;
+        }
+
+        return $rows;
+    }
+
+    public function deleteById($id)
+    {
+        $query = "DELETE FROM $this->tableName WHERE id=?";
+
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('i', $id);
+
+        if (!$statement->execute()) {
+            throw new Exception($result->error);
+        }
     }
 }
