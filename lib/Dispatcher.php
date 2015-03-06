@@ -12,7 +12,9 @@ class Dispatcher
 
 		require_once ("controller/$controllerName.php");
 		$controller = new $controllerName();
+
         call_user_func_array(array($controller, $method), $args);
+		
 		unset($controller);
 	}
 }

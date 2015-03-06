@@ -1,60 +1,44 @@
 <?php
-
+require_once('model/UserModel.php');
 class UserController
 {
-	private $model = null;
-
 	public function __construct()
 	{
-		$mysql = MySQL::getInstance(array('localhost', 'root', '', 'mvc'));
-		$this->model = new Model($mysql, 'users');
-
 		$view = new View('header', array('title' => 'Benutzer', 'heading' => 'Benutzer'));
 		$view->display();
 	}
-
 	public function index()
 	{
+		$userModel = new UserModel();
 		$view = new View('user_index');
-		$view->users = $this->model->fetchAll();
+		$view->users = $userModel->readAll();
 		$view->display();
 	}
-
-	public function create($id = null)
+	public function create()
 	{
-		$data = array('user' => null);
-		if ($id !== null) {
-			$data['user'] = $this->model->find($id);
-		}
-
-		$view = new View('user_create', $data);
+		$view = new View('user_create');
 		$view->display();
 	}
-
-	public function save($id = null)
+	public function doCreate()
 	{
 		if ($_POST['send']) {
-			$fname = $_POST['fname'];
-			$lname = $_POST['lname'];
-			$email = $_POST['email'];
+			$firstName = $_POST['firstName'];
+			$lastName  = $_POST['lastName'];
+			$email     = $_POST['email'];
+			// $password  = $_POST['password'];
+			$password = 'no_password';
 
-			if ($id !== null) {
-				$this->model->update(array('fname' => $fname, 'lname' => $lname, 'email' => $email), (int) $id);
-
-			} else {
-				$this->model->insert(array('fname' => $fname, 'lname' => $lname, 'email' => $email));
-			}
-
-			$view = new View('user_save_success');
-			$view->display();
+			$userModel = new UserModel();
+			$userModel->create($firstName, $lastName, $email, $password);
 		}
+		$this->index();
 	}
-
 	public function delete($id)
 	{
-		$this->model->delete((int) $id);
+		$userModel = new UserModel();
+		$userModel->deleteById($id);
+		$this->index();
 	}
-
 	public function __destruct(){
 		$view = new View('footer');
 		$view->display();
