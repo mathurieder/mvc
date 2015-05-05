@@ -6,7 +6,7 @@ class Dispatcher
 	{
 		$url = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
 
-		$controllerName = !empty($url[0]) ? $url[0] . 'Controller' : 'DefaultController';
+		$controllerName = !empty($url[0]) ? ucfirst($url[0]) . 'Controller' : 'DefaultController';
 		$method         = !empty($url[1]) ? $url[1] : 'index';
         $args           = array_slice($url, 2);
 
