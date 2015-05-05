@@ -10,7 +10,7 @@ Install xampp according to the booklet on your share. Clone this repo into any d
 
     D:\dev\web> git clone https://github.com/ICT-BBC/307-mvc.git
     D:\dev\web> cd 307-mvc
-    D:\dev\web\307-mvc> git checkout controller
+    D:\dev\web\307-mvc> git pull origin controller
 
 Setting up your apache2 vhosts with the following changes:
 
