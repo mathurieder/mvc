@@ -53,7 +53,7 @@ class Model
         $statement->bind_param('i', $id);
 
         if (!$statement->execute()) {
-            throw new Exception($result->error);
+            throw new Exception($statement->error);
         }
     }
 }
