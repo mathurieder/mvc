@@ -2,19 +2,18 @@
 
 require_once 'model/UserModel.php';
 
+/**
+ * Siehe Dokumentation im DefaultController.
+ */
 class UserController
 {
-    public function __construct()
-    {
-        $view = new View('header', array('title' => 'Benutzer', 'heading' => 'Benutzer'));
-        $view->display();
-    }
-
     public function index()
     {
         $userModel = new UserModel();
 
         $view = new View('user_index');
+        $view->title = 'Benutzer';
+        $view->heading = 'Benutzer';
         $view->users = $userModel->readAll();
         $view->display();
     }
@@ -22,6 +21,8 @@ class UserController
     public function create()
     {
         $view = new View('user_create');
+        $view->title = 'Benutzer erstellen';
+        $view->heading = 'Benutzer erstellen';
         $view->display();
     }
 
@@ -37,7 +38,8 @@ class UserController
             $userModel->create($firstName, $lastName, $email, $password);
         }
 
-        $this->index();
+        // Anfrage an die URI /user weiterleiten (HTTP 302)
+        header('Location: /user');
     }
 
     public function delete($id)
@@ -45,12 +47,7 @@ class UserController
         $userModel = new UserModel();
         $userModel->deleteById($id);
 
-        $this->index();
-    }
-
-    public function __destruct()
-    {
-        $view = new View('footer');
-        $view->display();
+        // Anfrage an die URI /user weiterleiten (HTTP 302)
+        header('Location: /user');
     }
 }
