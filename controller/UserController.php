@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Siehe Dokumentation im DefaultController.
+ */
 class UserController
 {
     public function __construct()
