@@ -32,6 +32,9 @@ class View
     public function display()
     {
         extract($this->properties);
-        require_once $this->viewfile;
+
+        require './view/header.php';
+        require $this->viewfile;
+        require './view/footer.php';
     }
 }

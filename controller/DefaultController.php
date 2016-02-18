@@ -24,12 +24,6 @@
  */
 class DefaultController
 {
-    public function __construct()
-    {
-        $view = new View('header', array('title' => 'Startseite', 'heading' => 'Startseite'));
-        $view->display();
-    }
-
     /**
      * Die index Funktion des DefaultControllers sollte in jedem Projekt
      * existieren, da diese ausgeführt wird, falls die URI des Requests leer
@@ -43,12 +37,8 @@ class DefaultController
         //   "default_index" rendern. Wie das genau funktioniert, ist in der
         //   View Klasse beschrieben.
         $view = new View('default_index');
-        $view->display();
-    }
-
-    public function __destruct()
-    {
-        $view = new View('footer');
+        $view->title = 'Startseite';
+        $view->heading = 'Startseite';
         $view->display();
     }
 }

@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="assets/favicon.ico">
 
-    <title><?php echo $title;?></title>
+    <title><?php echo $title;?> | Bbc MVC</title>
 
     <link href="/view/css/bootstrap.min.css" rel="stylesheet">
     <link href="/view/css/custom.css" rel="stylesheet">
@@ -29,7 +29,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">BBC-MVC</a>
+          <a class="navbar-brand" href="/">BBC-MVC</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">

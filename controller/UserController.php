@@ -5,26 +5,17 @@
  */
 class UserController
 {
-    public function __construct()
-    {
-        $view = new View('header', array('title' => 'Benutzer', 'heading' => 'Benutzer'));
-        $view->display();
-    }
-
     public function index()
     {
-        $this->create();
+        // Anfrage an die URI /user/crate weiterleiten (HTTP 302)
+        header('Location: /user/create');
     }
 
     public function create()
     {
         $view = new View('user_form');
-        $view->display();
-    }
-
-    public function __destruct()
-    {
-        $view = new View('footer');
+        $view->title = 'Benutzer erstellen';
+        $view->heading = 'Benutzer erstellen';
         $view->display();
     }
 }
