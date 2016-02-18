@@ -59,9 +59,8 @@ class View
 
     private $properties = array();
 
-    public function __construct($viewfile, $properties = array())
+    public function __construct($viewfile)
     {
-        $this->properties = $properties;
         $this->viewfile = "./view/$viewfile.php";
     }
 
