@@ -55,17 +55,14 @@
  */
 class View
 {
-    private $viewfile = null;
+    private $viewfile;
+
     private $properties = array();
 
     public function __construct($viewfile, $properties = array())
     {
         $this->properties = $properties;
-
-        $viewfile = "./view/$viewfile.php";
-        if (file_exists($viewfile)) {
-            $this->viewfile = $viewfile;
-        }
+        $this->viewfile = "./view/$viewfile.php";
     }
 
     public function __set($key, $value)
