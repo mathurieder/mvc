@@ -2,7 +2,6 @@
 
 class Form
 {
-
     public function __construct($action = '#', $method = 'POST')
     {
         echo "<form class=\"form-horizontal\" action=\"$action\" method=\"$method\">";
@@ -17,9 +16,8 @@ class Form
 
     public function __call($name, $args)
     {
-        $builderName = ucfirst($name) . "Builder";
+        $builderName = ucfirst($name).'Builder';
 
         return new $builderName();
     }
-
 }

@@ -2,7 +2,6 @@
 
 class Builder
 {
-
     private $config;
 
     public function __construct()
@@ -17,7 +16,7 @@ class Builder
 
     protected function build()
     {
-        throw new Exception("Build method is not implemented");
+        throw new Exception('Build method is not implemented');
     }
 
     public function __set($key, $value)
@@ -49,5 +48,4 @@ class Builder
     {
         return $this->build();
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 $form = new Form('/user/doCreate');
 
 echo $form->text()->label('Vorname')->name('firstName');
