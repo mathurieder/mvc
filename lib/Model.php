@@ -1,5 +1,6 @@
 <?php
-require_once('ConnectionHandler.php');
+
+require_once 'ConnectionHandler.php';
 
 class Model
 {

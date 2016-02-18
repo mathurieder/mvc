@@ -3,7 +3,7 @@
 return array(
 
     'database' => array(
-        'host'     => 'localhost',
+        'host' => 'localhost',
         'username' => 'root',
         'password' => '',
         'database' => 'mvc',
