@@ -58,6 +58,5 @@ class Dispatcher
         //   Methode darauf aufgerufen.
         $controller = new $controllerName();
         $controller->$method();
-        unset($controller);
     }
 }
