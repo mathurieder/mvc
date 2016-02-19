@@ -8,8 +8,8 @@
  * Anfrage an die gewünschte Funktion im entsprechenden Controller weiter. Die
  * URI wird wie im folgenden Beispiel verarbeitet:
  *
- *   /user/delete/?id=7&foo=bar
- *    |    |       └────┴─ GET Parameter stehen im Array $_GET zur Verfügung
+ *   /user/delete?id=7&foo=bar
+ *    |    |      └────┴─ GET Parameter stehen im Array $_GET zur Verfügung
  *    |    |
  *    |    └─ Der Wert nach dem zweiten Slash heisst so wie die Funktion, welche
  *    |         auf dem Contoller aufgeruft werden soll.
@@ -31,7 +31,10 @@ class Dispatcher
         // Die URI wird aus dem $_SERVER Array ausgelesen und in ihre
         //   Einzelteile zerlegt.
         // /user/index/foo --> ['user', 'index', 'foo']
-        $uriFragments = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
+        $uri = $_SERVER['REQUEST_URI'];
+        $uri = strtok($uri, '?'); // Erstes ? und alles danach abschneiden
+        $uri = trim($uri, '/'); // Alle / am anfang und am Ende der URI abschneiden
+        $uriFragments = explode('/', $uri); // In einzelteile zerlegen
 
         // Den Namen des gewünschten Controllers ermitteln
         $controllerName = 'DefaultController';
