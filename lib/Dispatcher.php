@@ -59,9 +59,6 @@ class Dispatcher
         // Eine neue Instanz des Controllers wird erstellt und die gewünschte
         //   Methode darauf aufgerufen.
         $controller = new $controllerName();
-
-        call_user_func_array(array($controller, $method), $args);
-
-        unset($controller);
+        $controller->$method();
     }
 }

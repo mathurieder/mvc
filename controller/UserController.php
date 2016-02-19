@@ -42,10 +42,10 @@ class UserController
         header('Location: /user');
     }
 
-    public function delete($id)
+    public function delete()
     {
         $userModel = new UserModel();
-        $userModel->deleteById($id);
+        $userModel->deleteById($_GET['id']);
 
         // Anfrage an die URI /user weiterleiten (HTTP 302)
         header('Location: /user');
