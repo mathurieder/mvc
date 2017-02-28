@@ -1,6 +1,6 @@
 <?php
 
-require_once 'lib/Model.php';
+require_once '../lib/Model.php';
 
 /**
  * Das UserModel ist zuständig für alle Zugriffe auf die Tabelle "user".

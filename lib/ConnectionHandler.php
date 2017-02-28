@@ -65,7 +65,7 @@ class ConnectionHandler
         if (self::$connection === null) {
 
             // Konfigurationsdatei auslesen
-            $config = require 'config.php';
+            $config = require '../config.php';
             $host = $config['database']['host'];
             $username = $config['database']['username'];
             $password = $config['database']['password'];
