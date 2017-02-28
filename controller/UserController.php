@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/UserModel.php';
+require_once '../model/UserModel.php';
 
 /**
  * Siehe Dokumentation im DefaultController.
