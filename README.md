@@ -49,10 +49,10 @@ NameVirtualHost *:80
     ServerName my-project.local
 
     # Ort an dem Das Projekt zu finden ist
-    DocumentRoot "c:/dev/my-project"
+    DocumentRoot "c:/dev/my-project/public"
 
     # Nochmals
-    <Directory "c:/dev/my-project">
+    <Directory "c:/dev/my-project/public">
         Options Indexes FollowSymLinks
         Options +Includes
         AllowOverride All
