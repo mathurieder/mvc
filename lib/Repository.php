@@ -73,7 +73,7 @@ require_once 'ConnectionHandler.php';
  *     throw new Exception("Ein Fehler ist aufgetreten: $result->error");
  *   }
  */
-class Model
+class Repository
 {
     /**
      * Damit die generischen Querys wisse, um welche Tabelle es sich handelt,
@@ -94,7 +94,7 @@ class Model
     public function readById($id)
     {
         // Query erstellen
-        $query = "SELECT * FROM $this->tableName WHERE id=?";
+        $query = "SELECT * FROM {$this->tableName} WHERE id=?";
 
         // Datenbankverbindung anfordern und, das Query "preparen" (vorbereiten)
         // und die Parameter "binden"
@@ -133,7 +133,7 @@ class Model
      */
     public function readAll($max = 100)
     {
-        $query = "SELECT * FROM $this->tableName LIMIT 0, $max";
+        $query = "SELECT * FROM {$this->tableName} LIMIT 0, $max";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
         $statement->execute();
@@ -161,7 +161,7 @@ class Model
      */
     public function deleteById($id)
     {
-        $query = "DELETE FROM $this->tableName WHERE id=?";
+        $query = "DELETE FROM {$this->tableName} WHERE id=?";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
         $statement->bind_param('i', $id);
