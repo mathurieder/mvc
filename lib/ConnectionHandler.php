@@ -1,53 +1,36 @@
 <?php
 
 /**
- * Der ConnectionHandler ist dafür zuständig, allen Models ein und die selbe
- * Verbindung auf die Datenbank zur Verfügung zu stellen.
+ * Der ConnectionHandler ist dafür zuständig, allen Repositories ein und die
+ * selbe Verbindung auf die Datenbank zur Verfügung zu stellen.
  *
- * Bevor die Verbindung verwendet werden kann, muss die Datei config.php im
- * Hauptverzeichnis des Projekts mit dem folgenden Inhalt erstellt werden.
- * Ersetze die werte mit denen, welche für deine Datenbank stimmen.
- *
- *   <?php
- *
- *   return array(
- *
- *       'database' => array(
- *           'host' => 'DB_HOST',
- *           'username' => 'DB_USER',
- *           'password' => 'DB_PASSWORT',
- *           'database' => 'DB_NAME',
- *       ),
- *
- *   );
- *
- * Nachdem die Konfiguration erstellt wurde, kann die Verbindung in den models
- * folgendermassen aufgerufen werden.
+ * Bevor die Verbindung verwendet werden kann, muss die Datei config.php
+ * entsprechend der Beschrebing in der Datei config.example.php erstellt werden.
+ * Danach kann die Verbindung in den repositories folgendermassen aufgerufen
+ * werden.
  *
  *   require_once 'ConnectionHandler.php';
- *
- *   [...]
- *
+ *   // ...
  *   $connection = ConnectionHandler::getConnection();
  */
 class ConnectionHandler
 {
     /**
-     * Nach dem ersten Aufruf der getConnection Methode wird hier die Verbindung
-     * für die weiteren Aufrufe dieser Methode zwischengespeichert. Dadurch muss
+     * Beim ersten Aufruf der getConnection Methode wird hier die Verbindung für
+     * die weiteren Aufrufe dieser Methode zwischengespeichert. Dadurch muss
      * nicht für jedes Query eine neue Verbindung geöffnet werden.
      */
     private static $connection = null;
 
     /**
      * Der ConnectionHandler implementiert das sogenannte Singleton
-     * Entwurfsmuster bei dem es gewünscht ist, dass keine Instanzen (new
-     * ConnectionHandler()) davon erstellt werden können. Dies kann ganz einfach
-     * mit einem solchen privaten Konstruktor realisiert werden.
+     * Entwurfsmuster. Dieses hat zum Ziel, dass von einer Klasse immer nur eine
+     * Instanz existiert. Dies wird erreicht, indem der Konstruktor private ist
+     * und die Methode getInstance die Instanzierung verwaltet.
      */
     private function __construct()
     {
-        // Privater Konstruktor um das erstellen von Instanzen zu verhindern
+        // Privater Konstruktor um die Verwendung von getInstance zu erzwingen.
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-require_once '../model/UserModel.php';
+require_once '../repository/UserRepository.php';
 
 /**
  * Siehe Dokumentation im DefaultController.
@@ -9,11 +9,12 @@ class UserController
 {
     public function index()
     {
-        $userModel = new UserModel();
+        $userRepository = new UserRepository();
+
         $view = new View('user_index');
         $view->title = 'Benutzer';
         $view->heading = 'Benutzer';
-        $view->users = $userModel->readAll();
+        $view->users = $userRepository->readAll();
         $view->display();
     }
 
@@ -34,8 +35,8 @@ class UserController
             // $password  = $_POST['password'];
             $password = 'no_password';
 
-            $userModel = new UserModel();
-            $userModel->create($firstName, $lastName, $email, $password);
+            $userRepository = new UserRepository();
+            $userRepository->create($firstName, $lastName, $email, $password);
         }
 
         // Anfrage an die URI /user weiterleiten (HTTP 302)
@@ -44,8 +45,8 @@ class UserController
 
     public function delete()
     {
-        $userModel = new UserModel();
-        $userModel->deleteById($_GET['id']);
+        $userRepository = new UserRepository();
+        $userRepository->deleteById($_GET['id']);
 
         // Anfrage an die URI /user weiterleiten (HTTP 302)
         header('Location: /user');

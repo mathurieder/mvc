@@ -1,16 +1,16 @@
 <?php
 
-require_once '../lib/Model.php';
+require_once '../lib/Repository.php';
 
 /**
- * Das UserModel ist zuständig für alle Zugriffe auf die Tabelle "user".
+ * Das UserRepository ist zuständig für alle Zugriffe auf die Tabelle "user".
  *
- * Die Ausführliche Dokumentation zu Models findest du in der Model Klasse.
+ * Die Ausführliche Dokumentation zu Repositories findest du in der Repository Klasse.
  */
-class UserModel extends Model
+class UserRepository extends Repository
 {
     /**
-     * Diese Variable wird von der Klasse Model verwendet, um generische
+     * Diese Variable wird von der Klasse Repository verwendet, um generische
      * Funktionen zur Verfügung zu stellen.
      */
     protected $tableName = 'user';
@@ -40,5 +40,7 @@ class UserModel extends Model
         if (!$statement->execute()) {
             throw new Exception($statement->error);
         }
+
+        return $statement->insert_id;
     }
 }
