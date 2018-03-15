@@ -1,4 +1,5 @@
 <?php
+require_once 'UriParser.php';
 
 /**
  * Die View is das V aus MVC. Dabei geht es um alles, was dem Client (Browser)
@@ -56,34 +57,33 @@
 class View
 {
     private $viewfile;
-
     private $properties = array();
-
-    public function __construct($viewfile)
+    
+    public function __construct($viewfileName)
     {
-        $this->viewfile = "./../view/$viewfile.php";
+        $this->viewfile = "./../MVC/Views/". UriParser::getControllerName() . "/" . $viewfileName . ".php";
     }
-
+    
     public function __set($key, $value)
     {
         if (!isset($this->$key)) {
             $this->properties[$key] = $value;
         }
     }
-
+    
     public function __get($key)
     {
         if (isset($this->properties[$key])) {
             return $this->properties[$key];
         }
     }
-
+    
     public function display()
     {
         extract($this->properties);
-
-        require './../view/header.php';
+        
+        require './../MVC/Views/header.php';
         require $this->viewfile;
-        require './../view/footer.php';
+        require './../MVC/Views/footer.php';
     }
 }
