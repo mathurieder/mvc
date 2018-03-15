@@ -17,8 +17,8 @@ require_once 'UriParser.php';
  *     {
  *       $artikel = ...; // Artikel vom Model anfordern
  *
- *       // View erstellen (name = Dateiname im View Verzeichnis)
- *       $view = new View('article_show');
+ *       // View erstellen (name = Dateiname im View Verzeichnis im Unterordner mit dem Controllername)
+ *       $view = new View('show');
  *
  *       // Werte welche für die Darstellung benötigt werden übergeben.
  *       $view->title = $artikel->name;
