@@ -1,4 +1,5 @@
 <?php
+require_once 'UriParser.php';
 
 /**
  * Die View is das V aus MVC. Dabei geht es um alles, was dem Client (Browser)
@@ -33,7 +34,7 @@
  *   1. Die Datei "header.php" aus dem View Verzeichnis wird gerendert. Darin
  *        sollte ger Ganze HTML Code sein, welcher bei allen seiten gleich ist
  *        und vor den Inhalt kommt. Dadurch entstehen keine Redundanzen.
- *   2. Die Datei, welche o heisst wie im Konstruktor übergeben wird gerendert.
+ *   2. Die Datei, welche heisst wie im Konstruktor übergeben wird gerendert.
  *        Darin sollte ger Ganze HTML Code sein, welcher speziell für diese
  *        Seite gedacht ist.
  *   3. Die Datei "footer.php" aus dem View Verzeichnis wird gerendert. Darin
@@ -56,12 +57,12 @@
 class View
 {
     private $viewfile;
-
     private $properties = array();
 
-    public function __construct($viewfile)
+    public function __construct($viewfileName)
     {
-        $this->viewfile = "./../view/$viewfile.php";
+        $uriParser = new UriParser();
+        $this->viewfile = "./../MVC/Views/". UriParser::getControllerName() . "/" . $viewfileName . ".php";
     }
 
     public function __set($key, $value)
@@ -82,8 +83,8 @@ class View
     {
         extract($this->properties);
 
-        require './../view/header.php';
+        require './../MVC/Views/header.php';
         require $this->viewfile;
-        require './../view/footer.php';
+        require './../MVC/Views/footer.php';
     }
 }

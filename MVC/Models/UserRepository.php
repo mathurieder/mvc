@@ -1,6 +1,6 @@
 <?php
 
-require_once '../lib/Repository.php';
+require_once '../Libraries/Repository.php';
 
 /**
  * Das UserRepository ist zuständig für alle Zugriffe auf die Tabelle "user".
@@ -42,5 +42,5 @@ class UserRepository extends Repository
         }
 
         return $statement->insert_id;
-    }
+    }    
 }

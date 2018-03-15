@@ -1,6 +1,6 @@
 <?php
 
-require_once '../repository/UserRepository.php';
+require_once '../MVC/Models/UserRepository.php';
 
 /**
  * Siehe Dokumentation im DefaultController.
@@ -8,10 +8,10 @@ require_once '../repository/UserRepository.php';
 class UserController
 {
     public function index()
-    {
+    {       
         $userRepository = new UserRepository();
 
-        $view = new View('user_index');
+        $view = new View('index');
         $view->title = 'Benutzer';
         $view->heading = 'Benutzer';
         $view->users = $userRepository->readAll();
@@ -20,7 +20,7 @@ class UserController
 
     public function create()
     {
-        $view = new View('user_create');
+        $view = new View('create');
         $view->title = 'Benutzer erstellen';
         $view->heading = 'Benutzer erstellen';
         $view->display();

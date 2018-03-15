@@ -13,9 +13,9 @@
 		  </div>
 		</div>
 		<div class="form-group">
-		  <label class="col-md-2 control-label" for="email">Mail</label>
+		  <label class="col-md-2 control-label" for="email">E-Mail</label>
 		  <div class="col-md-4">
-		  	<input id="email" name="email" type="text" placeholder="Mail" class="form-control input-md">
+		  	<input id="email" name="email" type="text" placeholder="E-Mail" class="form-control input-md">
 		  </div>
 		</div>
 		<div class="form-group">
