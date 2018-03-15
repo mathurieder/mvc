@@ -9,6 +9,6 @@
  * auf eine bestehende Datei zeigen hierhin umgeleitet.
  */
 
-require_once '../lib/Dispatcher.php';
+require_once '../Library/Dispatcher.php';
 
 Dispatcher::dispatch();

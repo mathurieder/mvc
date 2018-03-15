@@ -1,12 +1,12 @@
 <?php
-class UriParser
+class UriParser_Solution
 {
     /**
      * Diese Methode wertet die Request URI aus.
      */
     public static function getControllerName()
     {
-        $uriFragments = UriParser::getUriFragments();
+        $uriFragments = UriParser_Solution::getUriFragments();
      
         // Den Namen des gewünschten Controllers ermitteln 
         if (!empty($uriFragments[0])) {
@@ -20,7 +20,7 @@ class UriParser
     
     public static function getMethodName()
     {
-        $uriFragments = UriParser::getUriFragments();
+        $uriFragments = UriParser_Solution::getUriFragments();
         
         // Den Namen der auszuführenden Methode ermitteln
         $method = 'index';
