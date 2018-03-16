@@ -1,7 +1,4 @@
 <?php
-require_once '../Libraries/View.php';
-require_once '../MVC/Models/UserRepository.php';
-
 /**
  * Der Controller ist der Ort an dem es für jede Seite, welche der Benutzer
  * anfordern kann eine Methode gibt, welche die dazugehörende Businesslogik

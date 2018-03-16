@@ -12,4 +12,5 @@
 require_once '../Libraries/Dispatcher.php';
 require_once '../Libraries/View.php';
 
+
 Dispatcher::dispatch();
