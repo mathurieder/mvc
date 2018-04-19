@@ -2,12 +2,12 @@
 class UriParser_Solution
 {
     /**
-     * Diese Methode wertet die Request URI aus.
+     * Diese Methode wertet die Request URI aus und gibt den Controllername zurück.
      */
     public static function getControllerName()
     {
         $uriFragments = UriParser_Solution::getUriFragments();
-     
+             
         // Den Namen des gewünschten Controllers ermitteln 
         if (!empty($uriFragments[0])) {
             $controllerName = $uriFragments[0];
@@ -18,6 +18,9 @@ class UriParser_Solution
         return 'Default';
     }
     
+    /**
+     * Diese Methode wertet die Request URI aus und gibt den Actionname (Action = Methode im Controller) zurück.
+     */
     public static function getMethodName()
     {
         $uriFragments = UriParser_Solution::getUriFragments();

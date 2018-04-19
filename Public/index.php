@@ -10,5 +10,6 @@
  */
 
 require_once '../Library/Dispatcher.php';
+require_once '../Library/UriParser.php';
 
 Dispatcher::dispatch();
