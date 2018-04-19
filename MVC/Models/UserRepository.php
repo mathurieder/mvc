@@ -34,7 +34,14 @@ class UserRepository extends Repository
 
         $query = "INSERT INTO $this->tableName (firstName, lastName, email, password) VALUES (?, ?, ?, ?)";
 
-        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $mysqli = ConnectionHandler::getConnection();
+        $statement = $mysqli->prepare($query);
+        
+        if (false === $statement) {
+            $errorMessage = $mysqli->error;
+            throw new Exception($errorMessage);
+        }
+        
         $statement->bind_param('ssss', $firstName, $lastName, $email, $password);
 
         if (!$statement->execute()) {

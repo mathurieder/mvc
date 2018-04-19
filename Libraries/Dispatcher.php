@@ -1,5 +1,4 @@
 <?php
-require_once 'UriParser.php';
 
 /**
  * Der Dispatcher ist dafür zuständig, alle Requests an den entsprechenden

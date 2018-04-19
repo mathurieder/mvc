@@ -10,6 +10,7 @@
  */
 
 require_once '../Libraries/Dispatcher.php';
+require_once '../Libraries/UriParser.php';
 require_once '../Libraries/View.php';
 
 
